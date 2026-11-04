@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aslxo'ja Ag'zamxonov | Apple Minimalist Link Hub</title>
+  <meta name="description" content="Apple Industrial minimalizmi uslubidagi haqiqiy Linktree sahifasi. Sof oq fon, qora va ko'k tugmalar hamda Matter.js Antigravitatsiya fizikasi.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appleBg: '#fbfbfd',
+            appleCard: '#ffffff',
+            appleBlack: '#000000',
+            appleDark: '#1d1d1f',
+            appleBlue: '#0071e3',
+            appleBlueHover: '#0077ed',
+            appleGray: '#86868b',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Matter.js 2D Fizika Dvigateli CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+  <!-- Maxsus Apple Linktree uslublar -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#fbfbfd] text-[#1d1d1f] min-h-screen py-4 sm:py-8 px-4 relative select-none flex flex-col justify-between">
+
+  <!-- Apple Spotlight Kursor Nuri -->
+  <div class="apple-spotlight"></div>
+
+  <!-- Orqa fondagi nafis Apple to'r naqshi va nozik ambient nur -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute inset-0 apple-grid opacity-50"></div>
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- ASOSIY BUTUN LINKTREE KONTEYNERI                                        -->
+  <!-- ======================================================================= -->
+  <div id="main-container" class="relative z-10 w-full max-w-xl lg:max-w-2xl mx-auto flex flex-col items-center">
+    
+    <!-- 1. YUQORI BOSHQARUV PANELI (APPLE NAVBAR) -->
+    <header class="w-full mb-6">
+      <nav class="apple-card rounded-2xl px-4 py-2.5 sm:py-3 flex items-center justify-between shadow-sm">
+        
+        <!-- Brend logotipi -->
+        <div class="flex items-center space-x-2">
+          <div class="w-7 h-7 rounded-lg bg-black text-white flex items-center justify-center font-bold text-xs shadow-sm">
+            ✦
+          </div>
+          <span class="font-extrabold text-sm tracking-tight text-black">
+            alisher<span class="text-[#0071e3]">.dev</span>
+          </span>
+        </div>
+
+        <!-- Boshqaruv tugmalari (Ovoz, Nusxalash, QR-kod) -->
+        <div class="flex items-center space-x-1 sm:space-x-1.5">
+          <button id="sound-toggle-btn" title="Ovoz effektlari" class="p-2 rounded-xl text-slate-600 hover:text-black hover:bg-black/[0.05] transition-all cursor-pointer">
+            <i id="sound-icon" data-lucide="volume-2" class="w-4 h-4"></i>
+          </button>
+
+          <button id="copy-link-btn" title="Havolani nusxalash" class="p-2 sm:px-3 sm:py-1.5 rounded-xl text-black hover:text-[#0071e3] hover:bg-blue-50/60 transition-all text-xs font-bold flex items-center space-x-1.5 border border-black/[0.08] hover:border-[#0071e3]/30 cursor-pointer">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Nusxalash</span>
+          </button>
+
+          <button id="share-btn" title="Ulashish va QR-kod" class="p-2 rounded-xl text-black hover:bg-black/[0.05] transition-all border border-black/[0.08] cursor-pointer">
+            <i data-lucide="qr-code" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </nav>
+    </header>
+
+    <!-- 2. PROFIL QISMI (HERO PROFILE CARD) -->
+    <section id="profile-card" class="physics-item apple-card rounded-3xl p-6 sm:p-8 w-full text-center flex flex-col items-center mb-5 relative bg-white">
+      
+      <!-- Avatar (Aylanuvchi Neon Ring bilan) -->
+      <div class="avatar-ring mb-4">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-slate-100">
+          <img 
+            id="profile-avatar" 
+            src="" 
+            alt="Avatar" 
+            class="w-full h-full object-cover"
+          >
+        </div>
+      </div>
+
+      <!-- Ism va Blue Checkmark -->
+      <div class="flex items-center space-x-2">
+        <h1 id="profile-name" class="text-2xl sm:text-3xl font-extrabold text-black tracking-tight">
+          Aslxo'ja Ag'zamxonov
+        </h1>
+        <span title="Tasdiqlangan Profil" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#0071e3] text-white shadow-sm">
+          <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+        </span>
+      </div>
+
+      <!-- Taxallus va Lavozim -->
+      <div class="flex items-center space-x-2 mt-1 mb-3">
+        <span id="profile-username" class="text-xs sm:text-sm font-bold text-[#0071e3] font-mono">
+          @alisherdev
+        </span>
+        <span class="text-slate-300">•</span>
+        <span id="profile-title" class="text-xs sm:text-sm font-semibold text-[#86868b]">
+          Principal Fullstack & Creative UI Engineer
+        </span>
+      </div>
+
+      <!-- Status Pill (Shoshilinchlik nishoni) -->
+      <div class="status-pill-animate inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-black text-white shadow-md mb-4">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span id="status-badge-text">
+          🔥 HOZIR BAND: SHOSHILING — OY OXIRIGACHA ATIGI 2 TA BUYURTMA UCHUN JOY QOLDI
+        </span>
+      </div>
+
+      <!-- Agressiv marketing bio matni -->
+      <p id="profile-bio" class="text-xs sm:text-sm text-[#515154] leading-relaxed max-w-md font-normal">
+        Yuklanmoqda...
+      </p>
+
+    </section>
+
+    <!-- 3. IJTIMOIY ISBOT (SOCIAL PROOF COUNTERS) -->
+    <div id="stats-container" class="physics-item w-full grid grid-cols-3 gap-2.5 sm:gap-3 mb-5">
+      <!-- app.js tomonidan to'ldiriladi -->
+    </div>
+
+    <!-- 4. "🚀 GRAVITATSIYANI YO'Q QILISH" TUGMASI (SHOWSTOPPER HERO BUTTON) -->
+    <div id="antigravity-btn-wrapper" class="physics-item w-full mb-5">
+      <button 
+        id="antigravity-toggle-btn"
+        class="apple-antigravity-hero-btn w-full relative overflow-hidden group p-4 sm:p-4.5 rounded-3xl flex items-center justify-between cursor-pointer"
+      >
+        <!-- Apple Shimmer Sweep -->
+        <div class="absolute inset-0 w-1/3 h-full bg-gradient-to-r from-transparent via-blue-500/20 to-transparent skew-x-12 apple-shimmer pointer-events-none"></div>
+
+        <div class="flex items-center space-x-3.5 text-left relative z-10">
+          <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-white border border-white/15 shadow-inner">
+            <i data-lucide="sparkles" class="w-5 h-5 text-[#2997ff] transition-transform group-hover:scale-125 group-hover:rotate-12"></i>
+          </div>
+          <div>
+            <div class="text-sm sm:text-base font-extrabold text-white flex items-center space-x-2">
+              <span>🚀 GRAVITATSIYANI YO'Q QILISH</span>
+              <span class="text-[9px] uppercase tracking-wider bg-[#0071e3] text-white px-2 py-0.5 rounded-md font-mono font-bold">PRO FIZIKA</span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-slate-300 font-normal mt-0.5">
+              Fizika qonunlarini buzing & barcha kartalarni havoga uchiring!
+            </p>
+          </div>
+        </div>
+
+        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:translate-x-1.5 transition-transform border border-white/15 text-white">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+      </button>
+    </div>
+
+    <!-- 5. ASOSIY HAVOLALAR RO'YXATI (LINKTREE CARDS) -->
+    <div id="links-container" class="w-full space-y-3 sm:space-y-3.5 mb-5">
+      <!-- app.js tomonidan to'ldiriladi -->
+    </div>
+
+    <!-- 6. TO'G'RIDAN-TO'G'RI ALOQA TUGMALARI (QORA VA KO'K) -->
+    <div class="w-full mb-6">
+      <div class="text-center mb-2.5">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] font-mono">
+          Tezkor aloqa va rasmiy takliflar
+        </span>
+      </div>
+      <div id="direct-contacts-container" class="physics-item flex flex-col sm:flex-row gap-2.5 w-full">
+        <!-- app.js orqali render qilinadi -->
+      </div>
+    </div>
+
+    <!-- 7. FOOTER -->
+    <footer class="mt-2 text-center text-xs text-[#86868b] pb-4">
+      <p class="font-medium">© 2026 <span class="text-black font-bold">Alisher Uzoqov</span>. Barcha huquqlar himoyalangan.</p>
+      <p class="text-[11px] text-[#86868b] mt-1 font-mono">
+        Designed with Apple Minimalism & Matter.js Physics Engine
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- FIZIKA INTERFEYSI: OVERLAY CANVAS & SUZUVCHI DOCK (HUD)                 -->
+  <!-- ======================================================================= -->
+
+  <!-- Matter.js Mouse Constraint uchun interaktiv canvas -->
+  <canvas 
+    id="physics-canvas" 
+    class="fixed inset-0 z-50 hidden pointer-events-none"
+  ></canvas>
+
+  <!-- Antigravity rejimida chiqadigan Apple Dynamic Island doki -->
+  <div 
+    id="physics-hud" 
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] hidden transition-all duration-300 translate-y-28 opacity-0 w-11/12 max-w-md"
+  >
+    <div class="rounded-2xl p-2.5 sm:p-3 shadow-2xl flex items-center justify-between border border-white/20 bg-black/95 backdrop-blur-2xl text-white">
+      
+      <!-- Asl holatiga qaytarish (Reset Gravity - Apple Blue) -->
+      <button 
+        id="reset-gravity-btn" 
+        class="flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/30 active:scale-95 transition-all cursor-pointer"
+      >
+        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+        <span>🔄 Tartibni tiklash</span>
+      </button>
+
+      <!-- Gravitatsiya rejimini almashtirish -->
+      <button 
+        id="toggle-gravity-mode-btn" 
+        class="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs text-white border border-white/10 transition-all cursor-pointer"
+        title="Gravitatsiya kuchini o'zgartirish"
+      >
+        <i id="gravity-mode-icon" data-lucide="rocket" class="w-3.5 h-3.5 text-[#2997ff]"></i>
+        <span id="gravity-mode-label" class="font-bold">Antigravitatsiya</span>
+      </button>
+
+      <!-- Portlash (Xaos) -->
+      <button 
+        id="chaos-boost-btn" 
+        class="p-2 sm:px-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/10 text-xs font-bold flex items-center space-x-1 transition-all cursor-pointer"
+        title="Barcha kartalarni kuch bilan havoga sochish"
+      >
+        <i data-lucide="zap" class="w-4 h-4 text-[#2997ff]"></i>
+        <span class="hidden sm:inline">Portlash</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- TOAST XABARNOMASI -->
+  <div 
+    id="toast" 
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] pointer-events-none"
+  >
+    <div class="px-5 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-bold shadow-2xl flex items-center space-x-2.5 border border-white/15">
+      <i data-lucide="check-circle-2" class="w-4 h-4 text-[#2997ff] shrink-0"></i>
+      <span id="toast-text">🚀 Havola buferga nusxalandi! Buni jamoangizga yuboring!</span>
+    </div>
+  </div>
+
+  <!-- SHARE & QR CODE MODAL OYNASI -->
+  <div 
+    id="share-modal" 
+    class="fixed inset-0 z-[80] hidden items-center justify-center p-4 bg-black/40 backdrop-blur-md"
+  >
+    <div class="apple-card rounded-3xl p-6 max-w-xs w-full text-center relative bg-white border border-black/[0.08] shadow-2xl animate-in fade-in zoom-in duration-200">
+      <button 
+        id="close-share-modal" 
+        class="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-black hover:bg-slate-100 transition-all cursor-pointer"
+      >
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0071e3] flex items-center justify-center mx-auto mb-3 border border-blue-100">
+        <i data-lucide="qr-code" class="w-6 h-6"></i>
+      </div>
+
+      <h3 class="font-extrabold text-base text-black">Ulashish va QR-Kod</h3>
+      <p class="text-xs text-[#86868b] mt-1 mb-4">
+        Kamerangizni qarating va sahifani bir zumda oching
+      </p>
+
+      <div class="bg-white p-3 rounded-2xl inline-block shadow-md mb-4 border border-slate-200">
+        <img 
+          id="qr-code-img" 
+          src="" 
+          alt="QR Code" 
+          class="w-40 h-40 object-contain rounded-lg"
+        >
+      </div>
+
+      <p class="text-[11px] text-[#86868b] font-medium">
+        Ushbu havolani hamkorlar va mijozlarga ulashing
+      </p>
+    </div>
+  </div>
+
+  <!-- Asosiy Skript -->
+  <script src="app.js"></script>
+</body>
+</html>
